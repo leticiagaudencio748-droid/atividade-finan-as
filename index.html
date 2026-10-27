@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard simples para controlar receitas e despesas pessoais.">
+  <title>MeuSaldo | Finanças pessoais</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="MeuSaldo - início"><span class="brand-icon">M</span> MeuSaldo</a>
+    <nav aria-label="Navegação principal">
+      <a href="#resumo">Resumo</a>
+      <a href="#cadastro">Nova transação</a>
+      <a href="#historico">Histórico</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="welcome" aria-labelledby="titulo-principal">
+      <div>
+        <p class="eyebrow">CONTROLE FINANCEIRO PESSOAL</p>
+        <h1 id="titulo-principal">Suas finanças, <span>em equilíbrio.</span></h1>
+        <p class="subtitle">Acompanhe suas entradas, despesas e saldo em um só lugar.</p>
+      </div>
+      <div class="welcome-symbol" aria-hidden="true">↗</div>
+    </section>
+
+    <section id="resumo" class="summary-grid" aria-label="Resumo financeiro">
+      <article class="summary-card balance-card">
+        <div class="card-heading"><span>Saldo atual</span><span class="card-icon">R$</span></div>
+        <p id="saldo-total" class="amount">R$ 0,00</p>
+        <p class="card-note">Receitas menos despesas</p>
+      </article>
+      <article class="summary-card">
+        <div class="card-heading"><span>Total de entradas</span><span class="card-icon green">↙</span></div>
+        <p id="total-entradas" class="amount green-text">R$ 0,00</p>
+        <p class="card-note">Dinheiro recebido</p>
+      </article>
+      <article class="summary-card">
+        <div class="card-heading"><span>Total de saídas</span><span class="card-icon red">↗</span></div>
+        <p id="total-saidas" class="amount red-text">R$ 0,00</p>
+        <p class="card-note">Dinheiro gasto</p>
+      </article>
+    </section>
+
+    <div class="content-grid">
+      <section id="cadastro" class="panel" aria-labelledby="form-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">ADICIONAR MOVIMENTAÇÃO</p><h2 id="form-title">Nova transação</h2></div>
+          <span class="heading-mark">＋</span>
+        </div>
+        <form id="transaction-form">
+          <div class="field">
+            <label for="descricao">Nome da transação</label>
+            <input id="descricao" name="descricao" type="text" placeholder="Ex.: Salário, mercado..." maxlength="60" required>
+          </div>
+          <div class="field">
+            <label for="valor">Valor (R$)</label>
+            <input id="valor" name="valor" type="number" min="0.01" step="0.01" placeholder="0,00" required>
+          </div>
+          <div class="field">
+            <label for="tipo">Tipo de movimentação</label>
+            <select id="tipo" name="tipo" required>
+              <option value="entrada">Entrada (receita)</option>
+              <option value="saida">Saída (despesa)</option>
+            </select>
+          </div>
+          <button class="primary-button" type="submit">Adicionar transação <span aria-hidden="true">＋</span></button>
+          <p id="form-feedback" class="feedback" role="status" aria-live="polite"></p>
+        </form>
+        <aside class="tip-box"><span aria-hidden="true">✦</span><p><strong>Dica:</strong> registre cada movimentação para manter seu controle financeiro atualizado.</p></aside>
+      </section>
+
+      <section id="historico" class="panel history-panel" aria-labelledby="history-title">
+        <div class="section-heading history-heading">
+          <div><p class="eyebrow">SUAS MOVIMENTAÇÕES</p><h2 id="history-title">Histórico</h2></div>
+          <span id="transaction-count" class="count-badge">0 itens</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Transação</th><th scope="col">Tipo</th><th scope="col">Valor</th><th scope="col"><span class="sr-only">Ações</span></th></tr></thead>
+            <tbody id="transaction-list"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">▤</div>
+          <h3>Nenhuma transação ainda</h3>
+          <p>Adicione sua primeira entrada ou saída usando o formulário.</p>
+        </div>
+        <div class="history-footer"><span>Os dados ficam salvos neste navegador.</span><button id="clear-all" class="text-button" type="button">Limpar histórico</button></div>
+      </section>
+    </div>
+    <footer class="page-footer"><span>MeuSaldo · Projeto acadêmico</span><span>Desenvolvido com HTML, CSS e JavaScript</span></footer>
+  </main>
+</body>
+</html>
